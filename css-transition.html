@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Webpage</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      /* CSS3 Transitions */
+      .transition-button {
+        background-color: rgb(4, 70, 92);
+        border: none;
+        padding: 10px 20px;
+        transition: background-color 0.5s, transform 0.5s;
+      }
+
+      .transition-button:hover {
+        background-color: rgb(43, 109, 43);
+        transform: scale(1.2);
+      }
+
+      /* CSS3 Animations */
+      @keyframes slideIn {
+        from {
+          transform: translateX(-100%);
+        }
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .animated-banner {
+        width: 100%;
+        background-color: rgb(238, 238, 24);
+        padding: 20px;
+        text-align: center;
+        animation: slideIn 2s;
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid lightgray;
+        border-top: 5px solid black;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      /* Modal */
+      .hidden {
+        display: none;
+      }
+
+      #modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border: 1px solid #ccc;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Animation Reset */
+      #animatedElement {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: lightcoral;
+        transition: transform 0.5s;
+      }
+
+      .animated {
+        transform: translateY(100px);
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- CSS3 Transitions -->
+    <button class="transition-button">Hover over me</button>
+
+    <!-- CSS3 Animations -->
+    <div class="animated-banner">Welcome to My Website!</div>
+    <div class="loading-spinner"></div>
+
+    <!-- JavaScript Functions -->
+    <button id="calculateButton">Calculate Area</button>
+    <p id="areaResult"></p>
+
+    <button id="toggleModalButton">Toggle Modal</button>
+    <div id="modal" class="hidden">
+      <p>This is a modal!</p>
+      <button id="closeModalButton">Close</button>
+    </div>
+
+    <button id="triggerAnimationButton">Trigger Animation</button>
+    <div id="animatedElement">Animate me!</div>
+
+    <script>
+      // Part 2: JavaScript Functions
+
+      // Function with parameters and return values
+      function calculateArea(length, width) {
+        return length * width;
+      }
+
+      document
+        .getElementById("calculateButton")
+        .addEventListener("click", function () {
+          const length = 5; // Example length
+          const width = 10; // Example width
+          const area = calculateArea(length, width);
+          document.getElementById("areaResult").textContent = "Area: " + area;
+        });
+
+      // Function demonstrating scope
+      var globalVariable = "I am global";
+
+      function scopeFunction() {
+        var localVariable = "I am local";
+        console.log(globalVariable); // Accessible
+        console.log(localVariable); // Accessible
+      }
+
+      scopeFunction();
+      console.log(globalVariable); // Accessible
+      // console.log(localVariable);  // Not accessible (Uncommenting this line will throw an error)
+
+      // Function to toggle a CSS class
+      document
+        .getElementById("toggleModalButton")
+        .addEventListener("click", function () {
+          var modal = document.getElementById("modal");
+          modal.classList.toggle("hidden");
+        });
+
+      document
+        .getElementById("closeModalButton")
+        .addEventListener("click", function () {
+          var modal = document.getElementById("modal");
+          modal.classList.add("hidden");
+        });
+
+      // Part 3: Combining CSS Animations with JavaScript
+      document
+        .getElementById("triggerAnimationButton")
+        .addEventListener("click", function () {
+          var element = document.getElementById("animatedElement");
+          element.classList.toggle("animated");
+        });
+    </script>
+  </body>
+</html>
